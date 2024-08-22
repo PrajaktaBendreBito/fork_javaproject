@@ -44,11 +44,7 @@ public class cartProductDao {
                 .setParameterList("product_ids", productIds)
                 .list();
 
-        sql2 = "SELECT * FROM product WHERE id IN (:product_ids)";
-        return this.sessionFactory.getCurrentSession()
-                .createNativeQuery(sql2, Product.class)
-                .setParameterList("product_ids", productIds)
-                .list();
+
     }
 
     @Transactional
