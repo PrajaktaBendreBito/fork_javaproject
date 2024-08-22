@@ -35,21 +35,19 @@ public class cartProductDao {
         String sql = "SELECT product_id FROM cart_product WHERE cart_id = :cart_id";
         List<Integer> productIds = this.sessionFactory.getCurrentSession()
                 .createNativeQuery(sql)
-                .setParameter("cart_id", cart_id)
+                .setParameter("cart_id", null)
                 .list();
 
         sql = "SELECT * FROM product WHERE id IN (:product_ids)";
         return this.sessionFactory.getCurrentSession()
                 .createNativeQuery(sql, Product.class)
-                .setParameterList("product_ids", productIds)
+                .setParameterList("product_ids", productId)
                 .list();
-
-
     }
 
     @Transactional
     public void updateCartProduct(CartProduct cartProduct) {
-        this.sessionFactory.getCurrentSession().update(cartProduct);
+        this.sessionFactory.getCurrentSession().update(cartProducts);
     }
 
     @Transactional
